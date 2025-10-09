@@ -9,7 +9,7 @@ namespace ObjectOrientedPractice.Exceptions
     /// <summary>
     /// Исключение, возникающее при некорректной длине строки.
     /// </summary>
-    internal class StringMaxLengthException : Exception
+    public class StringMaxLengthException : Exception
     {
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="StringMaxLengthException"/> с сообщением об ошибке.
