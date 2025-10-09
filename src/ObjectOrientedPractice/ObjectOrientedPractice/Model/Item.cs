@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Exceptions;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -12,28 +13,29 @@ namespace ObjectOrientedPractice.Model
     /// Взаимодействие с объектами осуществляется через свойства. Поле ID является уникальным
     /// и автоматически генерируется.
     /// </summary>    
-    internal class Item
+    public class Item
     {
-        private readonly int _ID;
-        private string? _name;
-        private string? _info;
+        private readonly int _id;
+        private string _name;
+        private string _info;
         private double _cost;
+        private Category _category;
 
         /// <summary>
         /// Уникальный идентификатор предмета.
         /// </summary>
-        public int ID
+        public int Id
         {
-            get { return _ID; }
+            get { return _id; }
         }
 
         /// <summary>
         /// Название предмета.
         /// </summary>
-        /// <exception cref="Exception">
+        /// <exception cref="StringLengthException">
         /// Выбрасывается, если строка <paramref name="Name"/> пуста или превышает допустимую длину.
         /// </exception>
-        public string? Name
+        public string Name
         {
             get { return _name; }
             private set
@@ -44,10 +46,9 @@ namespace ObjectOrientedPractice.Model
                     _name = value;
                 }
 
-                catch (Exception)
+                catch (StringLengthException)
                 {
-
-                    throw new Exception($"Неверные данные для {nameof(Name)}");
+                    throw new StringLengthException(nameof(Name), 200, 0);
                 }
             }
 
@@ -56,10 +57,10 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Описание предмета.
         /// </summary>
-        /// <exception cref="Exception">
+        /// <exception cref="StringLengthException">
         /// Выбрасывается, если строка <paramref name="Info"/> пуста или превышает допустимую длину.
         /// </exception>
-        public string? Info
+        public string Info
         {
             get { return _info; }
             private set
@@ -69,10 +70,9 @@ namespace ObjectOrientedPractice.Model
                     ValueValidator.AssertStringOnLength(value, 1000, 0, nameof(Name));
                     _info = value;
                 }
-                catch (Exception)
+                catch (StringLengthException)
                 {
-
-                    throw new Exception($"Неверные данные для {nameof(Info)}");
+                    throw new StringLengthException(nameof(Info), 1000, 0);
                 }
             }
 
@@ -98,6 +98,11 @@ namespace ObjectOrientedPractice.Model
 
         }
 
+        /// <summary>
+        /// Категория предмета
+        /// </summary>
+        public Category Category { get => _category; set => _category = value; }
+
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Item"/> с заданными параметрами.
@@ -105,12 +110,14 @@ namespace ObjectOrientedPractice.Model
         /// <param name="name">Название предмета. Передается в свойство <see cref="Name"/>.</param>
         /// <param name="info">Описание предмета. Передается в свойство <see cref="Info"/>.</param>
         /// <param name="cost">Стоимость предмета. Передается в свойство <see cref="Cost"/>.</param>
-        public Item(string? name, string? info, double cost)
+        /// <param name="category">Категория товара.</param>
+        public Item(string name, string info, double cost, Category category)
         {
-            _ID = IdGenerator.GetNextId();
+            _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
         }
     }
 }

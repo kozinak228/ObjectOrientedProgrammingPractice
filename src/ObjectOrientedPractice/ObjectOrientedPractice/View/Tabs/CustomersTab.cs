@@ -22,7 +22,7 @@ namespace ObjectOrientedPractice.View.Tabs
         /// <summary>
         /// Список всех добавленных клиентов.
         /// </summary>
-        private List<Customer> _customer = new();
+        private List<Customer> _customers = new();
 
         /// <summary>
         /// Конструктор по умолчанию, инициализирующий вкладку CustomersTab.
@@ -33,51 +33,99 @@ namespace ObjectOrientedPractice.View.Tabs
         }
 
         /// <summary>
+        /// Возвращает или задает список элементов, отображаемых на вкладке Customers.
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value;
+                UpdateCustomersListBox();
+            }
+        }
+
+        /// <summary>
+        /// Метод обновновления списка пользователей
+        /// </summary>
+        private void UpdateCustomersListBox()
+        {
+            listBoxCustomers.Items.Clear();
+            foreach (var customer in _customers)
+            {
+                listBoxCustomers.Items.Add($"{customer.FullName} - {customer.Address.Country}, {customer.Address.City}, {customer.Address.Street}");
+            }
+        }
+
+        /// <summary>
         /// Обрабатывает событие клика по кнопке "Добавить". Выполняет проверку 
         /// введённых данных, создаёт нового клиента и добавляет его в список.
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события клика мышью.</param>
-        private void add_btn_customers_MouseClick(object sender, MouseEventArgs e)
+        private void addBtnCustomersMouseClick(object sender, MouseEventArgs e)
         {
             try
             {
-                ValueValidator.AssertStringOnLength(textBox_fn_customers.Text, 200, 0, "Full Name");
-                ValueValidator.AssertStringOnLength(textBox_adrs_customers.Text, 500, 0, "Address");
+                ValueValidator.AssertStringOnLength(textBoxFullNameCustomers.Text, 200, 0, "Full Name");
+                ValueValidator.AssertNumericFieldOnLetter(addressControl.PostIndex, nameof(addressControl.PostIndex));
+                ValueValidator.AssertStringOnLength(addressControl.Country, 50, 0, nameof(addressControl.Country));
+                ValueValidator.AssertStringOnLength(addressControl.City, 50, 0, nameof(addressControl.City));
+                ValueValidator.AssertStringOnLength(addressControl.Street, 100, 0, nameof(addressControl.Street));
+                ValueValidator.AssertStringOnLength(addressControl.Building, 10, 0, nameof(addressControl.Building));
+                ValueValidator.AssertStringOnLength(addressControl.Apartament, 10, 0, nameof(addressControl.Apartament));
 
-                string addr = textBox_adrs_customers.Text;
-                string fullName = textBox_fn_customers.Text;
+                Customer customer = new(
+                    textBoxFullNameCustomers.Text,
+                    Convert.ToInt32(addressControl.PostIndex),
+                    addressControl.Country,
+                    addressControl.City,
+                    addressControl.Street,
+                    addressControl.Building,
+                    addressControl.Apartament
+                    );
+                _customers.Add(customer);
+                listBoxCustomers.Items.Add($"{customer.FullName} - {customer.Address.Country}, {customer.Address.City}, {customer.Address.Street}");
 
-                Customer customer = new(fullName, addr);
-                _customer.Add(customer);
-                listBox_customers.Items.Add($"{customer.FullName} - {customer.Address}");
+                textBoxFullNameCustomers.BackColor = Color.White;
 
-                textBox_adrs_customers.BackColor = Color.White;
-                textBox_fn_customers.BackColor = Color.White;
-
-                textBox_adrs_customers.Clear();
-                textBox_fn_customers.Clear();
-                textBox_id_customers.Clear();
+                textBoxFullNameCustomers.Clear();
+                textBoxIdCustomers.Clear();
+                addressControl.ClearAddressFields();
+                addressControl.ExceptionSetRedColor(false);
             }
-            catch (StringMaxLengthException)
+            catch (ArgumentOutOfRangeException)
             {
-                MessageBox.Show("Длина поля превышает допустимое значение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_adrs_customers.BackColor = Color.Red;
-                textBox_fn_customers.BackColor = Color.Red;
+                MessageBox.Show("Поле является пустым", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxFullNameCustomers.BackColor = ColorTranslator.FromHtml("#DC143C");
+                addressControl.ExceptionSetRedColor(true);
 
-                textBox_adrs_customers.Clear();
-                textBox_fn_customers.Clear();
-                textBox_id_customers.Clear();
+                textBoxFullNameCustomers.Clear();
+                textBoxIdCustomers.Clear();
+                addressControl.ClearAddressFields();
             }
-            catch (StringMinLengthException)
+            catch (ArgumentException)
             {
-                MessageBox.Show("Длина поля меньше допустимого значения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_adrs_customers.BackColor = Color.Red;
-                textBox_fn_customers.BackColor = Color.Red;
+                MessageBox.Show("Поле содержит некорректные данные (отличные от цифр)", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxFullNameCustomers.BackColor = ColorTranslator.FromHtml("#DC143C");
+                addressControl.ExceptionSetRedColor(true);
 
-                textBox_adrs_customers.Clear();
-                textBox_fn_customers.Clear();
-                textBox_id_customers.Clear();
+                textBoxFullNameCustomers.Clear();
+                textBoxIdCustomers.Clear();
+                addressControl.ClearAddressFields();
+            }
+            catch (StringLengthException)
+            {
+                MessageBox.Show("Длина поля меньше или превышает допустимое значение", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxFullNameCustomers.BackColor = ColorTranslator.FromHtml("#DC143C");
+                addressControl.ExceptionSetRedColor(true);
+
+                textBoxFullNameCustomers.Clear();
+                textBoxIdCustomers.Clear();
+                addressControl.ClearAddressFields();
             }
         }
 
@@ -87,17 +135,18 @@ namespace ObjectOrientedPractice.View.Tabs
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события клика мышью.</param>
-        private void remove_btn_customers_MouseClick(object sender, MouseEventArgs e)
+        private void removeBtnCustomersMouseClick(object sender, MouseEventArgs e)
         {
-            if (listBox_customers.SelectedIndex != -1)
+            if (listBoxCustomers.SelectedIndex != -1)
             {
-                int index = listBox_customers.SelectedIndex;
-                _customer.RemoveAt(index);
-                listBox_customers.Items.RemoveAt(index);
+                int index = listBoxCustomers.SelectedIndex;
+                _customers.RemoveAt(index);
+                listBoxCustomers.Items.RemoveAt(index);
                 MessageBox.Show("Элемент успешно удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                textBox_adrs_customers.Clear();
-                textBox_fn_customers.Clear();
-                textBox_id_customers.Clear();
+
+
+                textBoxFullNameCustomers.Clear();
+                textBoxIdCustomers.Clear();
             }
             else
             {
@@ -111,16 +160,16 @@ namespace ObjectOrientedPractice.View.Tabs
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события клика мышью.</param>
-        private void listBox_customers_MouseClick(object sender, MouseEventArgs e)
+        private void listBoxCustomersMouseClick(object sender, MouseEventArgs e)
         {
-            if (listBox_customers.SelectedIndex != -1)
+            if (listBoxCustomers.SelectedIndex != -1)
             {
-                int index = listBox_customers.SelectedIndex;
-                Customer selectedItem = _customer[index];
+                int index = listBoxCustomers.SelectedIndex;
+                Customer selectedCustomer = _customers[index];
 
-                textBox_adrs_customers.Text = selectedItem.Address;
-                textBox_fn_customers.Text = selectedItem.FullName;
-                textBox_id_customers.Text = selectedItem.ID.ToString();
+                textBoxFullNameCustomers.Text = selectedCustomer.FullName;
+                textBoxIdCustomers.Text = selectedCustomer.Id.ToString();
+                addressControl.FillAddressFields(selectedCustomer.Address);
             }
         }
     }

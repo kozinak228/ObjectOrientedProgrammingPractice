@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractice.Services;
+using ObjectOrientedPractice.Exceptions;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -11,20 +12,20 @@ namespace ObjectOrientedPractice.Model
     /// Класс для представления клиента, который может добавляться в базу данных.
     /// Взаимодействие с объектом осуществляется через свойства. Поле ID является уникальным и автоматически генерируется.
     /// </summary> 
-    internal class Customer
+    public class Customer
     {
-        private readonly int _ID;
-        private string? _fullname;
-        private string? _address;
+        private readonly int _id;
+        private string _fullname;
+        private Address _address;
 
         /// <summary>
         /// Уникальный идентификатор клиента.
         /// </summary>
-        public int ID
+        public int Id
         {
             get
             {
-                return _ID;
+                return _id;
             }
         }
 
@@ -34,7 +35,7 @@ namespace ObjectOrientedPractice.Model
         /// <exception cref="Exception">
         /// Выбрасывается, если строка <paramref name="FullName"/> пуста или превышает допустимую длину.
         /// </exception>
-        public string? FullName
+        public string FullName
         {
             get { return _fullname; }
             private set
@@ -44,10 +45,9 @@ namespace ObjectOrientedPractice.Model
                     ValueValidator.AssertStringOnLength(value, 200, 0, nameof(FullName));
                     _fullname = value;
                 }
-                catch (Exception)
+                catch (StringLengthException)
                 {
-
-                    throw new Exception($"Неверные данные для {nameof(FullName)}");
+                    throw new StringLengthException(nameof(FullName), 200, 0);
                 }
             }
         }
@@ -58,21 +58,12 @@ namespace ObjectOrientedPractice.Model
         /// <exception cref="Exception">
         /// Выбрасывается, если строка <paramref name="Address"/> пуста или превышает допустимую длину.
         /// </exception>
-        public string? Address
+        public Address Address
         {
             get { return _address; }
             private set
             {
-                try
-                {
-                    ValueValidator.AssertStringOnLength(value, 1000, 0, nameof(Address));
-                    _address = value;
-                }
-                catch (Exception)
-                {
-
-                    throw new Exception($"Неверные данные для {nameof(Address)}");
-                }
+                _address = value ?? throw new ArgumentNullException(nameof(Address), "Адресс не может быть null");
             }
         }
 
@@ -80,12 +71,24 @@ namespace ObjectOrientedPractice.Model
         /// Инициализирует новый экземпляр класса <see cref="Customer"/> с заданными параметрами.
         /// </summary>
         /// <param name="fullname">Полное имя клиента. Передается в свойство <see cref="FullName"/>.</param>
-        /// <param name="address">Адрес клиента. Передается в свойство <see cref="Address"/>.</param>
-        public Customer(string? fullname, string? address)
+        /// <param name="index">Индекс адреса.</param>
+        /// <param name="country">Страна адреса.</param>
+        /// <param name="city">Город адреса.</param>
+        /// <param name="street">Улица адреса.</param>
+        /// <param name="building">Здание адреса.</param>
+        /// <param name="apartament">Квартира адреса.</param>
+        public Customer(string fullname, int index, string country, string city, string street, string building, string apartament)
         {
-            _ID = IdGenerator.GetNextId();
+            _id = IdGenerator.GetNextId();
             FullName = fullname;
-            Address = address;
+            Address = new Address(
+                index,
+                country,
+                city,
+                street,
+                building,
+                apartament
+                );
 
         }
     }

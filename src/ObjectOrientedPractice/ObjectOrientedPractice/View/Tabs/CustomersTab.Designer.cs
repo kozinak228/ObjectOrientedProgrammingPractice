@@ -30,17 +30,16 @@
         {
             splitContainer1 = new SplitContainer();
             panel4 = new Panel();
-            listBox_customers = new ListBox();
+            listBoxCustomers = new ListBox();
             panel3 = new Panel();
-            remove_btn_customers = new Button();
-            add_btn_customers = new Button();
+            removeBtnCustomers = new Button();
+            addBtnCustomers = new Button();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            textBox_adrs_customers = new TextBox();
-            textBox_fn_customers = new TextBox();
-            textBox_id_customers = new TextBox();
-            label5 = new Label();
+            addressControl = new ObjectOrientedPractice.View.Controls.AddressControl();
+            textBoxFullNameCustomers = new TextBox();
+            textBoxIdCustomers = new TextBox();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -58,7 +57,6 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -70,75 +68,68 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panel2);
-            splitContainer1.Size = new Size(966, 512);
-            splitContainer1.SplitterDistance = 333;
+            splitContainer1.Size = new Size(1104, 682);
+            splitContainer1.SplitterDistance = 381;
             splitContainer1.TabIndex = 0;
             // 
             // panel4
             // 
-            panel4.Controls.Add(listBox_customers);
+            panel4.Controls.Add(listBoxCustomers);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 34);
-            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Location = new Point(0, 45);
             panel4.Name = "panel4";
-            panel4.Size = new Size(333, 422);
+            panel4.Size = new Size(381, 563);
             panel4.TabIndex = 2;
             // 
-            // listBox_customers
+            // listBoxCustomers
             // 
-            listBox_customers.Dock = DockStyle.Fill;
-            listBox_customers.FormattingEnabled = true;
-            listBox_customers.ItemHeight = 15;
-            listBox_customers.Location = new Point(0, 0);
-            listBox_customers.Margin = new Padding(3, 2, 3, 2);
-            listBox_customers.Name = "listBox_customers";
-            listBox_customers.Size = new Size(333, 422);
-            listBox_customers.TabIndex = 0;
-            listBox_customers.MouseClick += listBox_customers_MouseClick;
+            listBoxCustomers.Dock = DockStyle.Fill;
+            listBoxCustomers.FormattingEnabled = true;
+            listBoxCustomers.Location = new Point(0, 0);
+            listBoxCustomers.Name = "listBoxCustomers";
+            listBoxCustomers.Size = new Size(381, 563);
+            listBoxCustomers.TabIndex = 0;
+            listBoxCustomers.MouseClick += listBoxCustomersMouseClick;
             // 
             // panel3
             // 
-            panel3.Controls.Add(remove_btn_customers);
-            panel3.Controls.Add(add_btn_customers);
+            panel3.Controls.Add(removeBtnCustomers);
+            panel3.Controls.Add(addBtnCustomers);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 456);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(0, 608);
             panel3.Name = "panel3";
-            panel3.Size = new Size(333, 56);
+            panel3.Size = new Size(381, 74);
             panel3.TabIndex = 1;
             // 
-            // remove_btn_customers
+            // removeBtnCustomers
             // 
-            remove_btn_customers.Dock = DockStyle.Left;
-            remove_btn_customers.Location = new Point(114, 0);
-            remove_btn_customers.Margin = new Padding(3, 2, 3, 2);
-            remove_btn_customers.Name = "remove_btn_customers";
-            remove_btn_customers.Size = new Size(114, 56);
-            remove_btn_customers.TabIndex = 1;
-            remove_btn_customers.Text = "Remove";
-            remove_btn_customers.UseVisualStyleBackColor = true;
-            remove_btn_customers.MouseClick += remove_btn_customers_MouseClick;
+            removeBtnCustomers.Dock = DockStyle.Left;
+            removeBtnCustomers.Location = new Point(130, 0);
+            removeBtnCustomers.Name = "removeBtnCustomers";
+            removeBtnCustomers.Size = new Size(130, 74);
+            removeBtnCustomers.TabIndex = 1;
+            removeBtnCustomers.Text = "Remove";
+            removeBtnCustomers.UseVisualStyleBackColor = true;
+            removeBtnCustomers.MouseClick += removeBtnCustomersMouseClick;
             // 
-            // add_btn_customers
+            // addBtnCustomers
             // 
-            add_btn_customers.Dock = DockStyle.Left;
-            add_btn_customers.Location = new Point(0, 0);
-            add_btn_customers.Margin = new Padding(3, 2, 3, 2);
-            add_btn_customers.Name = "add_btn_customers";
-            add_btn_customers.Size = new Size(114, 56);
-            add_btn_customers.TabIndex = 0;
-            add_btn_customers.Text = "Add";
-            add_btn_customers.UseVisualStyleBackColor = true;
-            add_btn_customers.MouseClick += add_btn_customers_MouseClick;
+            addBtnCustomers.Dock = DockStyle.Left;
+            addBtnCustomers.Location = new Point(0, 0);
+            addBtnCustomers.Name = "addBtnCustomers";
+            addBtnCustomers.Size = new Size(130, 74);
+            addBtnCustomers.TabIndex = 0;
+            addBtnCustomers.Text = "Add";
+            addBtnCustomers.UseVisualStyleBackColor = true;
+            addBtnCustomers.MouseClick += addBtnCustomersMouseClick;
             // 
             // panel1
             // 
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(333, 34);
+            panel1.Size = new Size(381, 45);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -148,76 +139,67 @@
             label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold | FontStyle.Italic);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(116, 30);
+            label1.Size = new Size(144, 37);
             label1.TabIndex = 0;
             label1.Text = "Customers";
             // 
             // panel2
             // 
-            panel2.Controls.Add(textBox_adrs_customers);
-            panel2.Controls.Add(textBox_fn_customers);
-            panel2.Controls.Add(textBox_id_customers);
-            panel2.Controls.Add(label5);
+            panel2.Controls.Add(addressControl);
+            panel2.Controls.Add(textBoxFullNameCustomers);
+            panel2.Controls.Add(textBoxIdCustomers);
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(629, 512);
+            panel2.Size = new Size(719, 682);
             panel2.TabIndex = 2;
             // 
-            // textBox_adrs_customers
+            // addressControl
             // 
-            textBox_adrs_customers.BackColor = SystemColors.Window;
-            textBox_adrs_customers.Location = new Point(101, 132);
-            textBox_adrs_customers.Margin = new Padding(3, 2, 3, 2);
-            textBox_adrs_customers.Multiline = true;
-            textBox_adrs_customers.Name = "textBox_adrs_customers";
-            textBox_adrs_customers.Size = new Size(526, 132);
-            textBox_adrs_customers.TabIndex = 6;
+            addressControl.Apartament = "";
+            addressControl.Building = "";
+            addressControl.City = "";
+            addressControl.Country = "";
+            addressControl.Location = new Point(3, 163);
+            addressControl.Name = "addressControl";
+            addressControl.PostIndex = "";
+            addressControl.Size = new Size(712, 204);
+            addressControl.Street = "";
+            addressControl.TabIndex = 6;
             // 
-            // textBox_fn_customers
+            // textBoxFullNameCustomers
             // 
-            textBox_fn_customers.Location = new Point(101, 91);
-            textBox_fn_customers.Margin = new Padding(3, 2, 3, 2);
-            textBox_fn_customers.Name = "textBox_fn_customers";
-            textBox_fn_customers.Size = new Size(526, 23);
-            textBox_fn_customers.TabIndex = 5;
+            textBoxFullNameCustomers.Location = new Point(132, 130);
+            textBoxFullNameCustomers.Name = "textBoxFullNameCustomers";
+            textBoxFullNameCustomers.Size = new Size(583, 27);
+            textBoxFullNameCustomers.TabIndex = 5;
             // 
-            // textBox_id_customers
+            // textBoxIdCustomers
             // 
-            textBox_id_customers.Location = new Point(101, 55);
-            textBox_id_customers.Margin = new Padding(3, 2, 3, 2);
-            textBox_id_customers.Name = "textBox_id_customers";
-            textBox_id_customers.Size = new Size(208, 23);
-            textBox_id_customers.TabIndex = 4;
-            // 
-            // label5
-            // 
-            label5.Font = new Font("Segoe UI", 10F);
-            label5.Location = new Point(7, 133);
-            label5.Name = "label5";
-            label5.Size = new Size(77, 20);
-            label5.TabIndex = 3;
-            label5.Text = "Address:";
+            textBoxIdCustomers.Location = new Point(132, 82);
+            textBoxIdCustomers.Name = "textBoxIdCustomers";
+            textBoxIdCustomers.ReadOnly = true;
+            textBoxIdCustomers.Size = new Size(237, 27);
+            textBoxIdCustomers.TabIndex = 4;
             // 
             // label4
             // 
             label4.Font = new Font("Segoe UI", 10F);
-            label4.Location = new Point(3, 91);
+            label4.Location = new Point(20, 130);
             label4.Name = "label4";
-            label4.Size = new Size(81, 20);
+            label4.Size = new Size(93, 27);
             label4.TabIndex = 2;
             label4.Text = "Full Name:";
             // 
             // label3
             // 
             label3.Font = new Font("Segoe UI", 10F);
-            label3.Location = new Point(3, 55);
+            label3.Location = new Point(20, 82);
             label3.Name = "label3";
-            label3.Size = new Size(27, 20);
+            label3.Size = new Size(31, 27);
             label3.TabIndex = 1;
             label3.Text = "ID:";
             // 
@@ -227,18 +209,17 @@
             label2.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(193, 30);
+            label2.Size = new Size(250, 38);
             label2.TabIndex = 0;
             label2.Text = "Selected Customer";
             // 
             // CustomersTab
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomersTab";
-            Size = new Size(966, 512);
+            Size = new Size(1104, 682);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
@@ -259,17 +240,15 @@
         private Label label1;
         private Panel panel4;
         private Panel panel3;
-        private ListBox listBox_customers;
-        private Button remove_btn_customers;
-        private Button add_btn_customers;
+        private ListBox listBoxCustomers;
+        private Button removeBtnCustomers;
+        private Button addBtnCustomers;
         private Panel panel2;
-        private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox_id_customers;
-        private TextBox textBox_adrs_customers;
-        private TextBox textBox_fn_customers;
-
+        private TextBox textBoxIdCustomers;
+        private TextBox textBoxFullNameCustomers;
+        private ObjectOrientedPractice.View.Controls.AddressControl addressControl;
     }
 }

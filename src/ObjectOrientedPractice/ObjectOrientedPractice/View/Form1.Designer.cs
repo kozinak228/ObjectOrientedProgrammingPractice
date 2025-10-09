@@ -97,7 +97,7 @@ namespace ObjectOrientedPractice
             ClientSize = new Size(967, 729);
             Controls.Add(tabControl1);
             Name = "MainWindow";
-            Text = "Form1";
+            Text = "OOP";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
