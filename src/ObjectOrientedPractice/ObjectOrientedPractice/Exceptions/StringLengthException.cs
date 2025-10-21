@@ -12,11 +12,17 @@ namespace ObjectOrientedPractice.Exceptions
     public class StringLengthException : Exception
     {
         /// <summary>
-        /// Инициализирует новый экземпляр класса <see cref="StringMinLengthException"/> с сообщением об ошибке.
+        /// Инициализирует новый экземпляр класса <see cref="StringLengthException"/> с сообщением об ошибке.
         /// </summary>
         /// <param name="propertyName">Имя свойства, для которого возникло исключение.</param>
         /// <param name="minLength">Минимально допустимая длина строки.</param>
         public StringLengthException(string propertyName, int maxLength, int minLength)
             : base($"{propertyName} должен быть больше {minLength} или меньше {maxLength} символов или поле пусто.") { }
+    }
+
+    public class NumericFieldException : Exception
+    {
+        public NumericFieldException(string propertyName, string message)
+            : base($"{propertyName} {message}") { }
     }
 }

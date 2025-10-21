@@ -57,6 +57,7 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 2, 3, 2);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -68,26 +69,29 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(panel2);
-            splitContainer1.Size = new Size(1104, 682);
-            splitContainer1.SplitterDistance = 381;
+            splitContainer1.Size = new Size(966, 512);
+            splitContainer1.SplitterDistance = 333;
             splitContainer1.TabIndex = 0;
             // 
             // panel4
             // 
             panel4.Controls.Add(listBoxCustomers);
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 45);
+            panel4.Location = new Point(0, 34);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(381, 563);
+            panel4.Size = new Size(333, 422);
             panel4.TabIndex = 2;
             // 
             // listBoxCustomers
             // 
             listBoxCustomers.Dock = DockStyle.Fill;
             listBoxCustomers.FormattingEnabled = true;
+            listBoxCustomers.ItemHeight = 15;
             listBoxCustomers.Location = new Point(0, 0);
+            listBoxCustomers.Margin = new Padding(3, 2, 3, 2);
             listBoxCustomers.Name = "listBoxCustomers";
-            listBoxCustomers.Size = new Size(381, 563);
+            listBoxCustomers.Size = new Size(333, 422);
             listBoxCustomers.TabIndex = 0;
             listBoxCustomers.MouseClick += listBoxCustomersMouseClick;
             // 
@@ -96,17 +100,19 @@
             panel3.Controls.Add(removeBtnCustomers);
             panel3.Controls.Add(addBtnCustomers);
             panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 608);
+            panel3.Location = new Point(0, 456);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(381, 74);
+            panel3.Size = new Size(333, 56);
             panel3.TabIndex = 1;
             // 
             // removeBtnCustomers
             // 
             removeBtnCustomers.Dock = DockStyle.Left;
-            removeBtnCustomers.Location = new Point(130, 0);
+            removeBtnCustomers.Location = new Point(114, 0);
+            removeBtnCustomers.Margin = new Padding(3, 2, 3, 2);
             removeBtnCustomers.Name = "removeBtnCustomers";
-            removeBtnCustomers.Size = new Size(130, 74);
+            removeBtnCustomers.Size = new Size(114, 56);
             removeBtnCustomers.TabIndex = 1;
             removeBtnCustomers.Text = "Remove";
             removeBtnCustomers.UseVisualStyleBackColor = true;
@@ -116,8 +122,9 @@
             // 
             addBtnCustomers.Dock = DockStyle.Left;
             addBtnCustomers.Location = new Point(0, 0);
+            addBtnCustomers.Margin = new Padding(3, 2, 3, 2);
             addBtnCustomers.Name = "addBtnCustomers";
-            addBtnCustomers.Size = new Size(130, 74);
+            addBtnCustomers.Size = new Size(114, 56);
             addBtnCustomers.TabIndex = 0;
             addBtnCustomers.Text = "Add";
             addBtnCustomers.UseVisualStyleBackColor = true;
@@ -128,8 +135,9 @@
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(381, 45);
+            panel1.Size = new Size(333, 34);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -139,7 +147,7 @@
             label1.Font = new Font("Segoe UI Semibold", 16F, FontStyle.Bold | FontStyle.Italic);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(144, 37);
+            label1.Size = new Size(116, 30);
             label1.TabIndex = 0;
             label1.Text = "Customers";
             // 
@@ -153,8 +161,9 @@
             panel2.Controls.Add(label2);
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(719, 682);
+            panel2.Size = new Size(629, 512);
             panel2.TabIndex = 2;
             // 
             // addressControl
@@ -163,43 +172,46 @@
             addressControl.Building = "";
             addressControl.City = "";
             addressControl.Country = "";
-            addressControl.Location = new Point(3, 163);
+            addressControl.Location = new Point(3, 122);
+            addressControl.Margin = new Padding(3, 2, 3, 2);
             addressControl.Name = "addressControl";
             addressControl.PostIndex = "";
-            addressControl.Size = new Size(712, 204);
+            addressControl.Size = new Size(623, 153);
             addressControl.Street = "";
             addressControl.TabIndex = 6;
             // 
             // textBoxFullNameCustomers
             // 
-            textBoxFullNameCustomers.Location = new Point(132, 130);
+            textBoxFullNameCustomers.Location = new Point(116, 98);
+            textBoxFullNameCustomers.Margin = new Padding(3, 2, 3, 2);
             textBoxFullNameCustomers.Name = "textBoxFullNameCustomers";
-            textBoxFullNameCustomers.Size = new Size(583, 27);
+            textBoxFullNameCustomers.Size = new Size(511, 23);
             textBoxFullNameCustomers.TabIndex = 5;
             // 
             // textBoxIdCustomers
             // 
-            textBoxIdCustomers.Location = new Point(132, 82);
+            textBoxIdCustomers.Location = new Point(116, 62);
+            textBoxIdCustomers.Margin = new Padding(3, 2, 3, 2);
             textBoxIdCustomers.Name = "textBoxIdCustomers";
             textBoxIdCustomers.ReadOnly = true;
-            textBoxIdCustomers.Size = new Size(237, 27);
+            textBoxIdCustomers.Size = new Size(208, 23);
             textBoxIdCustomers.TabIndex = 4;
             // 
             // label4
             // 
             label4.Font = new Font("Segoe UI", 10F);
-            label4.Location = new Point(20, 130);
+            label4.Location = new Point(18, 98);
             label4.Name = "label4";
-            label4.Size = new Size(93, 27);
+            label4.Size = new Size(81, 20);
             label4.TabIndex = 2;
             label4.Text = "Full Name:";
             // 
             // label3
             // 
             label3.Font = new Font("Segoe UI", 10F);
-            label3.Location = new Point(20, 82);
+            label3.Location = new Point(18, 62);
             label3.Name = "label3";
-            label3.Size = new Size(31, 27);
+            label3.Size = new Size(27, 20);
             label3.TabIndex = 1;
             label3.Text = "ID:";
             // 
@@ -209,17 +221,18 @@
             label2.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 204);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
-            label2.Size = new Size(250, 38);
+            label2.Size = new Size(193, 30);
             label2.TabIndex = 0;
             label2.Text = "Selected Customer";
             // 
             // CustomersTab
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomersTab";
-            Size = new Size(1104, 682);
+            Size = new Size(966, 512);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();

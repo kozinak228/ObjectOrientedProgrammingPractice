@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObjectOrientedPractice.Model;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -11,10 +12,6 @@ namespace ObjectOrientedPractice.Model
     /// </summary>
     public enum Category
     {
-        /// <summary
-        /// >Неизвестная продукция
-        /// </summary>
-        Unknown,
         /// <summary>
         /// Хлебобулочная продукция
         /// </summary>

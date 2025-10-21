@@ -31,6 +31,8 @@ namespace ObjectOrientedPractice.View.Tabs
         {
             InitializeComponent();
             comboBoxCategoryItems.DataSource = Enum.GetValues(typeof(Category));
+            comboBoxCategoryItems.SelectedItem = null;
+
         }
 
         /// <summary>
@@ -47,6 +49,13 @@ namespace ObjectOrientedPractice.View.Tabs
                 _items = value;
                 UpdateItemsListBox();
             }
+        }
+
+        public void RefreshData()
+        {
+            listBoxItems.DataSource = null;
+            listBoxItems.DataSource = _items;
+
         }
 
         /// <summary>
@@ -105,7 +114,7 @@ namespace ObjectOrientedPractice.View.Tabs
                 textBoxDescrItems.Clear();
                 textBoxIdItems.Clear();
                 textBoxNameItems.Clear();
-                comboBoxCategoryItems.SelectedItem = Category.Unknown;
+                comboBoxCategoryItems.SelectedItem = null;
 
             }
             catch (StringLengthException)
@@ -146,7 +155,7 @@ namespace ObjectOrientedPractice.View.Tabs
                 textBoxDescrItems.Clear();
                 textBoxIdItems.Clear();
                 textBoxNameItems.Clear();
-                comboBoxCategoryItems.SelectedItem = Category.Unknown;
+                comboBoxCategoryItems.SelectedItem = null;
             }
             else
             {
@@ -188,7 +197,7 @@ namespace ObjectOrientedPractice.View.Tabs
             textBoxDescrItems.Clear();
             textBoxCostItems.Clear();
             textBoxIdItems.Clear();
-            comboBoxCategoryItems.SelectedItem = Category.Unknown;
+            comboBoxCategoryItems.SelectedItem = null;
         }
 
         /// <summary>
@@ -206,3 +215,4 @@ namespace ObjectOrientedPractice.View.Tabs
         }
     }
 }
+

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractice.Services;
@@ -67,7 +69,7 @@ namespace ObjectOrientedPractice.Model
             {
                 try
                 {
-                    ValueValidator.AssertStringOnLength(value, 1000, 0, nameof(Name));
+                    ValueValidator.AssertStringOnLength(value, 1000, 0, nameof(Info));
                     _info = value;
                 }
                 catch (StringLengthException)
@@ -102,6 +104,11 @@ namespace ObjectOrientedPractice.Model
         /// Категория предмета
         /// </summary>
         public Category Category { get => _category; set => _category = value; }
+
+        public override string ToString()
+        {
+            return $"{Name} - {Cost}";
+        }
 
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractice.Services;
 using ObjectOrientedPractice.Exceptions;
+using ObjectOrientedPractice.Model;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -17,6 +18,8 @@ namespace ObjectOrientedPractice.Model
         private readonly int _id;
         private string _fullname;
         private Address _address;
+        private Cart _cart;
+        private List<Order> _orders;
 
         /// <summary>
         /// Уникальный идентификатор клиента.
@@ -32,7 +35,7 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Полное имя клиента.
         /// </summary>
-        /// <exception cref="Exception">
+        /// <exception cref="StringLengthException">
         /// Выбрасывается, если строка <paramref name="FullName"/> пуста или превышает допустимую длину.
         /// </exception>
         public string FullName
@@ -55,7 +58,7 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Адрес клиента.
         /// </summary>
-        /// <exception cref="Exception">
+        /// <exception cref="ArgumentNullException">
         /// Выбрасывается, если строка <paramref name="Address"/> пуста или превышает допустимую длину.
         /// </exception>
         public Address Address
@@ -66,6 +69,34 @@ namespace ObjectOrientedPractice.Model
                 _address = value ?? throw new ArgumentNullException(nameof(Address), "Адресс не может быть null");
             }
         }
+
+        /// <summary>
+        /// Корзина клиента.
+        /// </summary>
+        /// <exception cref="NullReferenceException">
+        /// Выбрасывается, если корзина <paramref name="Cart"/> не существует.
+        /// </exception>
+        public Cart Cart
+        {
+            get => _cart;
+            set
+            {
+                _cart = value ?? throw new NullReferenceException(nameof(Cart));
+            }
+        }
+
+        /// <summary>
+        /// Заказы клиента.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get => _orders;
+            set
+            {
+                _orders = value;
+            }
+        }
+
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Customer"/> с заданными параметрами.
@@ -81,6 +112,7 @@ namespace ObjectOrientedPractice.Model
         {
             _id = IdGenerator.GetNextId();
             FullName = fullname;
+            Cart = new Cart();
             Address = new Address(
                 index,
                 country,
@@ -89,7 +121,8 @@ namespace ObjectOrientedPractice.Model
                 building,
                 apartament
                 );
-
+            Orders = new List<Order>();
         }
     }
 }
+
