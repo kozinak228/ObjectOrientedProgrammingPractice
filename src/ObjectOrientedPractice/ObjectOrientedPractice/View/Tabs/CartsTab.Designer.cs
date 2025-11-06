@@ -81,7 +81,7 @@ namespace ObjectOrientedPractice.View.Tabs
             splitContainer1.Panel2.Controls.Add(comboBoxCustomerInCart);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Size = new Size(966, 512);
-            splitContainer1.SplitterDistance = 427;
+            splitContainer1.SplitterDistance = 428;
             splitContainer1.TabIndex = 0;
             // 
             // panel3
@@ -91,7 +91,7 @@ namespace ObjectOrientedPractice.View.Tabs
             panel3.Location = new Point(0, 32);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(427, 422);
+            panel3.Size = new Size(428, 422);
             panel3.TabIndex = 4;
             // 
             // listBoxCartItems
@@ -102,7 +102,7 @@ namespace ObjectOrientedPractice.View.Tabs
             listBoxCartItems.Location = new Point(0, 0);
             listBoxCartItems.Margin = new Padding(3, 2, 3, 2);
             listBoxCartItems.Name = "listBoxCartItems";
-            listBoxCartItems.Size = new Size(427, 422);
+            listBoxCartItems.Size = new Size(428, 422);
             listBoxCartItems.TabIndex = 0;
             // 
             // panel2
@@ -112,7 +112,7 @@ namespace ObjectOrientedPractice.View.Tabs
             panel2.Location = new Point(0, 454);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(427, 58);
+            panel2.Size = new Size(428, 58);
             panel2.TabIndex = 3;
             // 
             // buttonAddToCart
@@ -133,7 +133,7 @@ namespace ObjectOrientedPractice.View.Tabs
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(427, 32);
+            panel1.Size = new Size(428, 32);
             panel1.TabIndex = 2;
             // 
             // label1
@@ -280,3 +280,4 @@ namespace ObjectOrientedPractice.View.Tabs
         private TextBox textBoxAmount;
     }
 }
+

@@ -24,8 +24,9 @@ namespace ObjectOrientedPractice.Model
             _items.Add(new Item("Ковер", "Синтетика", 100, Category.Household));
             _items.Add(new Item("Шапка", "Шерсть", 300, Category.Household));
             _items.Add(new Item("Арбуз", "Свежий", 500, Category.Vegetables));
-            _customers.Add(new Customer("Коморкин Евгений Алексеевич", 1, "Россия", "Томск", "Ленина", "1", "194"));
-            _customers.Add(new Customer("Василькова Елена Петровна", 2, "Россия", "Москва", "8 Марта", "4", "1"));
+            _customers.Add(new Customer("Коморкин Евгений Алексеевич", 234561, "Россия", "Томск", "Ленина", "400000", "194"));
+            _customers.Add(new Customer("Василькова Елена Петровна", 212322, "Россия", "Москва", "8 Марта", "400000", "1"));
+            _customers[1].IsPriority = true;
         }
 
         /// <summary>

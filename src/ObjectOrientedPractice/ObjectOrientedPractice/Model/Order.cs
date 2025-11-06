@@ -95,6 +95,12 @@ namespace ObjectOrientedPractice.Model
             Status = OrderStatus.New;
             _amount = amount;
         }
+
+        /// <summary>
+        /// Конструктор по-умолчанию класса <see cref="Order"/>.
+        /// </summary>
+        public Order()
+        {
+        }
     }
 }
-
