@@ -1,4 +1,4 @@
-﻿using ObjectOrientedPractice.Model;
+﻿using ObjectOrientedPractice.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +24,9 @@ namespace ObjectOrientedPractice.Model
             _items.Add(new Item("Ковер", "Синтетика", 100, Category.Household));
             _items.Add(new Item("Шапка", "Шерсть", 300, Category.Household));
             _items.Add(new Item("Арбуз", "Свежий", 500, Category.Vegetables));
-            _customers.Add(new Customer("Коморкин Евгений Алексеевич", 234561, "Россия", "Томск", "Ленина", "400000", "194"));
-            _customers.Add(new Customer("Василькова Елена Петровна", 212322, "Россия", "Москва", "8 Марта", "400000", "1"));
+            _items.Add(new Item("Кока кола", "Американская", 200, Category.Drinks));
+            _customers.Add(new Customer("Тарасенко Даниил Романович", 1, "Казахстан", "Тараз", "Аппасова", "56", "2"));
+            _customers.Add(new Customer("Бобровник Дениэл Константинович", 2, "Россия", "Северск", "Солнечная", "19", "89"));
             _customers[1].IsPriority = true;
         }
 

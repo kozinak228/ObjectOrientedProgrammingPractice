@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ObjectOrientedPractice.Model;
 
-namespace ObjectOrientedPractice.Model
+namespace ObjectOrientedPractice.Model.Enums
 {
     /// <summary>
     /// Перечисление категории продукции

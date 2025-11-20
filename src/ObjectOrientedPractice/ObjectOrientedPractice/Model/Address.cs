@@ -24,9 +24,8 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Почтовый индекс адреса.
         /// </summary>
-        /// </exception>
-        /// <exception cref="ArgumentException">
-        /// Выбрасывается, если почтовый индекс не состоит из 6 цифр.
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Выбрасывается, если почтовый индекс <paramref name="Index"/> равен нулю или меньше его.
         /// </exception>
         public int Index
         {
@@ -36,18 +35,15 @@ namespace ObjectOrientedPractice.Model
             }
             private set
             {
-
-                // Проверка на 6 цифр
-                if (value < 100000 || value > 999999)
+                if (value <= 0)
                 {
-                    throw new ArgumentException("Почтовый индекс должен состоять из 6 цифр!", nameof(Index));
+                    throw new ArgumentOutOfRangeException("Почтовый индекс не может быть равен нулю или быть отрицательным!");
                 }
 
                 _index = value;
             }
         }
 
-        // Остальные свойства остаются без изменений...
         /// <summary>
         /// Страна адреса.
         /// </summary>

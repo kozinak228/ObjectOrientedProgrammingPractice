@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ObjectOrientedPractice.Services;
 using ObjectOrientedPractice.Exceptions;
+using ObjectOrientedPractice.Model.Enums;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -28,7 +29,10 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         public int Id
         {
-            get { return _id; }
+            get
+            {
+                return _id;
+            }
         }
 
         /// <summary>
@@ -39,7 +43,10 @@ namespace ObjectOrientedPractice.Model
         /// </exception>
         public string Name
         {
-            get { return _name; }
+            get
+            {
+                return _name;
+            }
             private set
             {
                 try
@@ -64,7 +71,10 @@ namespace ObjectOrientedPractice.Model
         /// </exception>
         public string Info
         {
-            get { return _info; }
+            get
+            {
+                return _info;
+            }
             private set
             {
                 try
@@ -88,7 +98,10 @@ namespace ObjectOrientedPractice.Model
         /// </exception>
         public double Cost
         {
-            get { return _cost; }
+            get
+            {
+                return _cost;
+            }
             private set
             {
                 if (0.0 == value || value >= 100000.0)
@@ -103,7 +116,11 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Категория предмета
         /// </summary>
-        public Category Category { get => _category; set => _category = value; }
+        public Category Category
+        {
+            get => _category;
+            set => _category = value;
+        }
 
         /// <summary>
         /// Переопределяет метод ToString для представления объекта в виде строки.

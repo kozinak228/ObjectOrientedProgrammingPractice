@@ -1,4 +1,5 @@
 ﻿using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -143,7 +144,7 @@ namespace ObjectOrientedPractice.View.Tabs
                             addressControlInPriority.Building = address.Building.ToString();
                             addressControlInPriority.Apartament = address.Apartament.ToString();
 
-                            textBoxAmountPriority.Text = order.TotalPrice.ToString();
+                            textBoxAmountPriority.Text = order.Amount.ToString();
 
                             listBoxItemsInPriority.DataSource = null;
                             listBoxItemsInPriority.DataSource = order.Items;
@@ -172,6 +173,7 @@ namespace ObjectOrientedPractice.View.Tabs
                     time.Time = comboBoxTimePriority.SelectedItem.ToString();
                 }
             }
+
             RefreshDataPriority();
         }
 
@@ -216,6 +218,7 @@ namespace ObjectOrientedPractice.View.Tabs
                         textBoxAmountPriority.Text = customer.Cart.Amount.ToString();
                     }
                 }
+
                 RefreshDataPriority();
             }
             else
@@ -241,6 +244,7 @@ namespace ObjectOrientedPractice.View.Tabs
                         order.Items.RemoveAt(indexItem);
                     }
                 }
+
                 RefreshDataPriority();
             }
             else
@@ -261,6 +265,7 @@ namespace ObjectOrientedPractice.View.Tabs
                 Customers.Clear();
                 RefreshDataPriority();
             }
+
             OrderClear();
         }
     }

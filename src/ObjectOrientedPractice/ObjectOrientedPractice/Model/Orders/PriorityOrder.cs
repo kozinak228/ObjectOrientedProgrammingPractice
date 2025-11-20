@@ -54,6 +54,9 @@ namespace ObjectOrientedPractice.Model
             set { _priorityOrderTime = value; }
         }
 
+        /// <summary>
+        /// Получает список строк, содержащий данные о времени приоритетной доставки.
+        /// </summary>
         public List<string> PriorityTimeData
         {
             get

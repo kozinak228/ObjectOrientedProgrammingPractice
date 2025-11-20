@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Enums;
 using ObjectOrientedPractice.View.Controls;
 
 namespace ObjectOrientedPractice.View.Tabs
@@ -91,7 +92,7 @@ namespace ObjectOrientedPractice.View.Tabs
                         dataGridViewOrder.Rows.Add(_customers[i].Id, _customers[i].Orders[j].Date,
                             _customers[i].Orders[j].Status, _customers[i].FullName,
                             $"{address.Index}, {address.Country}, {address.City}, {address.Street}, {address.Building}, {address.Apartament}",
-                            _customers[i].Orders[j].TotalPrice);
+                            _customers[i].Orders[j].Amount, _customers[i].Orders[j].Total);
 
                         comboBoxTimeOrder.Text = _customers[i].Time;
                     }
@@ -134,6 +135,7 @@ namespace ObjectOrientedPractice.View.Tabs
                 textBoxCreatedOrder.Text = row.Cells["Created"].Value.ToString();
                 textBoxAmountInOrder.Text = row.Cells["Price"].Value.ToString();
                 comboBoxStatusOrder.Text = row.Cells["OrderStatus"].Value.ToString();
+                textBoxTotalOrder.Text = row.Cells[6].Value.ToString();
 
                 string address = row.Cells[4].Value.ToString();
                 var individualStrings = address.Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
@@ -161,6 +163,7 @@ namespace ObjectOrientedPractice.View.Tabs
                         {
                             dataPanelOrder.Visible = false;
                         }
+
                         if (_customers[j].Orders.Count > 1)
                         {
                             for (int k = 0; k < _customers[j].Orders.Count; k++)
@@ -172,8 +175,10 @@ namespace ObjectOrientedPractice.View.Tabs
                                     break;
                                 }
                             }
+
                             break;
                         }
+
                         if (_customers[j].Orders.Count == 1)
                         {
                             listBoxItemsInOrder.DataSource = null;
@@ -213,6 +218,9 @@ namespace ObjectOrientedPractice.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обрабатывает изменение выбранного элемента в комбобоксе времени заказа.
+        /// </summary>
         private void comboBoxTimeOrderSelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBoxTimeOrder.SelectedItem != null)
@@ -222,6 +230,7 @@ namespace ObjectOrientedPractice.View.Tabs
                     time.Time = comboBoxTimeOrder.SelectedItem.ToString();
                 }
             }
+
             UpdateOrders();
         }
     }

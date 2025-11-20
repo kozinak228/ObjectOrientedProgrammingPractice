@@ -196,7 +196,7 @@ namespace ObjectOrientedPractice.View.Tabs
             dataGridViewOrder.RowHeadersVisible = false;
             dataGridViewOrder.RowHeadersWidth = 51;
             dataGridViewOrder.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewOrder.Size = new Size(534, 538);
+            dataGridViewOrder.Size = new Size(534, 671);
             dataGridViewOrder.TabIndex = 13;
             dataGridViewOrder.CellClick += dataGridViewOrderCellClick;
             // 
@@ -322,7 +322,7 @@ namespace ObjectOrientedPractice.View.Tabs
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1104, 682);
+            panel1.Size = new Size(1104, 815);
             panel1.TabIndex = 15;
             // 
             // splitContainer1
@@ -353,7 +353,7 @@ namespace ObjectOrientedPractice.View.Tabs
             splitContainer1.Panel2.Controls.Add(textBoxIdOrder);
             splitContainer1.Panel2.Controls.Add(textBoxCreatedOrder);
             splitContainer1.Panel2.Controls.Add(comboBoxStatusOrder);
-            splitContainer1.Size = new Size(1104, 682);
+            splitContainer1.Size = new Size(1104, 815);
             splitContainer1.SplitterDistance = 537;
             splitContainer1.TabIndex = 0;
             // 
@@ -383,7 +383,7 @@ namespace ObjectOrientedPractice.View.Tabs
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "OrdersTab";
-            Size = new Size(1104, 682);
+            Size = new Size(1104, 815);
             ((System.ComponentModel.ISupportInitialize)dataGridViewOrder).EndInit();
             dataPanelOrder.ResumeLayout(false);
             dataPanelOrder.PerformLayout();

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ObjectOrientedPractice.Exceptions;
+using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Discounts;
+using ObjectOrientedPractice.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ObjectOrientedPractice.Services;
-using ObjectOrientedPractice.Exceptions;
-using ObjectOrientedPractice.Model;
 
 namespace ObjectOrientedPractice.Model
 {
@@ -22,6 +23,7 @@ namespace ObjectOrientedPractice.Model
         private List<Order> _orders;
         private string _time;
         private bool _isPriority = false;
+        private List<IDiscount> _discounts;
 
         /// <summary>
         /// Уникальный идентификатор клиента.
@@ -42,7 +44,10 @@ namespace ObjectOrientedPractice.Model
         /// </exception>
         public string FullName
         {
-            get { return _fullname; }
+            get
+            {
+                return _fullname;
+            }
             private set
             {
                 try
@@ -65,7 +70,10 @@ namespace ObjectOrientedPractice.Model
         /// </exception>
         public Address Address
         {
-            get { return _address; }
+            get
+            {
+                return _address;
+            }
             private set
             {
                 _address = value ?? throw new ArgumentNullException(nameof(Address), "Адресс не может быть null");
@@ -99,6 +107,9 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Получает или задает время, связанное с клиентом.
+        /// </summary>
         public string Time
         {
             get
@@ -111,6 +122,9 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Получает или задает статус приоритета клиента.
+        /// </summary>
         public bool IsPriority
         {
             get
@@ -123,6 +137,21 @@ namespace ObjectOrientedPractice.Model
             }
         }
 
+        /// <summary>
+        /// Получает или устанавливает список скидок.
+        /// </summary>
+        /// <value>Список объектов, реализующих интерфейс <see cref="IDiscount"/>.</value>
+        public List<IDiscount> Discounts
+        {
+            get
+            {
+                return _discounts;
+            }
+            set
+            {
+                _discounts = value;
+            }
+        }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Customer"/> с заданными параметрами.
@@ -147,7 +176,12 @@ namespace ObjectOrientedPractice.Model
                 building,
                 apartament
                 );
+
             Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            PointsDiscount pointsDiscount = new PointsDiscount();
+            Discounts.Add(pointsDiscount);
         }
     }
 }
+

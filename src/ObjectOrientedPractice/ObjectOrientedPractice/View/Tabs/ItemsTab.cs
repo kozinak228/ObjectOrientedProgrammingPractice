@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ObjectOrientedPractice.Model;
 using ObjectOrientedPractice.Services;
 using ObjectOrientedPractice.Exceptions;
+using ObjectOrientedPractice.Model.Enums;
 
 namespace ObjectOrientedPractice.View.Tabs
 {
@@ -51,13 +52,6 @@ namespace ObjectOrientedPractice.View.Tabs
             }
         }
 
-        public void RefreshData()
-        {
-            listBoxItems.DataSource = null;
-            listBoxItems.DataSource = _items;
-
-        }
-
         /// <summary>
         /// Метод обновновления списка предметов
         /// </summary>
@@ -91,6 +85,7 @@ namespace ObjectOrientedPractice.View.Tabs
                     textBoxCostItems.Clear();
                     return;
                 }
+
                 if (cost <= 0)
                 {
                     MessageBox.Show("Цена не может быть отрицательной или равна нулю. Введите корректную цену.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ObjectOrientedPractice.Exceptions;
+using ObjectOrientedPractice.Model;
+using ObjectOrientedPractice.Model.Discounts;
+using ObjectOrientedPractice.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ObjectOrientedPractice.Model;
-using ObjectOrientedPractice.Services;
-using ObjectOrientedPractice.Exceptions;
 
 namespace ObjectOrientedPractice.View.Tabs
 {
@@ -23,6 +24,11 @@ namespace ObjectOrientedPractice.View.Tabs
         /// Список всех добавленных клиентов.
         /// </summary>
         private List<Customer> _customers = new();
+
+        /// <summary>
+        /// Новый объект скидки, который будет добавлен клиенту.
+        /// </summary>
+        public PercentDiscount newDiscount { get; set; }
 
         /// <summary>
         /// Конструктор по умолчанию, инициализирующий вкладку CustomersTab.
@@ -58,12 +64,6 @@ namespace ObjectOrientedPractice.View.Tabs
             {
                 listBoxCustomers.Items.Add($"{customer.FullName} - {customer.Address.Country}, {customer.Address.City}, {customer.Address.Street}");
             }
-        }
-
-        public void RefreshData()
-        {
-            listBoxCustomers.DataSource = null;
-            listBoxCustomers.DataSource = _customers;
         }
 
         /// <summary>
@@ -160,7 +160,6 @@ namespace ObjectOrientedPractice.View.Tabs
                 listBoxCustomers.Items.RemoveAt(index);
                 MessageBox.Show("Элемент успешно удален", "Удаление", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
                 textBoxFullNameCustomers.Clear();
                 textBoxIdCustomers.Clear();
             }
@@ -187,6 +186,87 @@ namespace ObjectOrientedPractice.View.Tabs
                 textBoxIdCustomers.Text = selectedCustomer.Id.ToString();
                 addressControl.FillAddressFields(selectedCustomer.Address);
                 checkBoxIsPriority.Checked = selectedCustomer.IsPriority;
+                listBoxDiscounts.DataSource = null;
+                listBoxDiscounts.DataSource = Customers[index].Discounts;
+                listBoxDiscounts.DisplayMember = "Info";
+            }
+        }
+
+        /// <summary>
+        /// Обрабатывает событие клика по кнопке "Add". Открывает вкладку
+        /// для добавления новой скидки клиенту.
+        /// </summary>
+        private void buttonAddDiscountClick(object sender, EventArgs e)
+        {
+            if (listBoxCustomers.SelectedIndex != -1)
+            {
+                DiscountsTab discountTab = new DiscountsTab();
+                discountTab.CustomersTabForm = this;
+                int index = listBoxCustomers.SelectedIndex;
+
+                if (!discountTab.Visible)
+                {
+                    discountTab.ShowDialog();
+                }
+
+                if (newDiscount != null)
+                {
+                    for (int i = 0; i < Customers[index].Discounts.Count; i++)
+                    {
+                        if (newDiscount.Info == Customers[index].Discounts[i].Info)
+                        {
+                            newDiscount = null;
+                            continue;
+                        }
+                    }
+
+                    if (newDiscount == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Customers[index].Discounts.Add(newDiscount);
+                        listBoxDiscounts.DataSource = null;
+                        listBoxDiscounts.DataSource = Customers[index].Discounts;
+                        listBoxDiscounts.DisplayMember = "Info";
+                        newDiscount = null;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                discountTab.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Выберите покупателя!");
+            }
+        }
+
+        /// <summary>
+        /// Обрабатывает событие клика по кнопке "Remove". Удаляет выбранную
+        /// скидку из списка скидок клиента.
+        /// </summary>
+        private void buttonRemoveDiscountClick(object sender, EventArgs e)
+        {
+            int indexDiscount = listBoxDiscounts.SelectedIndex;
+            int indexCustomer = listBoxCustomers.SelectedIndex;
+
+            if (indexDiscount == 0)
+            {
+                MessageBox.Show("Накопительную скидку удалить нельзя!");
+                return;
+            }
+
+            if (indexDiscount > 0)
+            {
+                Customers[indexCustomer].Discounts.RemoveAt(indexDiscount);
+                listBoxDiscounts.DataSource = null;
+                listBoxDiscounts.DataSource = Customers[indexCustomer].Discounts;
+                listBoxDiscounts.DisplayMember = "Info";
             }
         }
     }

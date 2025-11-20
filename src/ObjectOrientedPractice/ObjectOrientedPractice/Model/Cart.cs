@@ -18,12 +18,15 @@ namespace ObjectOrientedPractice.Model
         /// <summary>
         /// Список элементов, содержащихся в корзине.
         /// </summary>
-        public List<Item> Items 
+        public List<Item> Items
         {
-            get { return _items; }
-            set 
-            { 
-                _items = value; 
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
             }
         }
 
@@ -33,17 +36,20 @@ namespace ObjectOrientedPractice.Model
         /// </summary>
         public double Amount
         {
-            get 
+            get
             {
                 double sum = 0.0;
+
                 if (_items.Count == 0 || _items == null)
                 {
                     return 0.0;
                 }
+
                 foreach (var item in _items)
                 {
                     sum += item.Cost;
                 }
+
                 return sum;
             }
         }
